@@ -48,30 +48,33 @@ def revolve_curve(
 
     Example
     -------
+    >>> from curve2mesh import revolve_curve
+    >>> import numpy as np
     >>> import matplotlib.pyplot as plt
     >>> from mpl_toolkits.mplot3d.art3d import Poly3DCollection
-    >>> from curve2mesh import revolve_curve
-    >>> # Example 2D curve
-    >>> x = np.linspace(0, 1, 100) if NUMPY_AVAILABLE else [i/100 for i in range(100)]
-    >>> z = x
-    >>> angle_count = 50
-    >>> faces = revolve_curve(x, z, angle_count)
 
+    >>> # Sample 2D curve coordinates
+    >>> x = np.linspace(np.pi/2, np.pi, 2)
+    >>> z = np.sin(x)  # Example curve (parabola)
+    >>> # Revolve the curve
+    >>> angle_count = 4
+    >>> faces = revolve_curve(x, z, angle_count, revolve_angle=2*np.pi)
+    >>> # Plotting
     >>> fig = plt.figure()
     >>> ax = fig.add_subplot(111, projection='3d')
-    >>> ax.add_collection3d(Poly3DCollection(faces, facecolors='g', linewidths=1, alpha=0.5))
-    >>> ax.set_xlim(-1, 1)
-    >>> ax.set_ylim(-1, 1)
-    >>> ax.set_zlim(-1, 1)
+    >>> ax.add_collection3d(Poly3DCollection(faces, alpha=0.5))
+    >>> ax.set_xlim(-x.max(), x.max())
+    >>> ax.set_ylim(-x.max(), x.max())
+    >>> ax.set_zlim(z.min(), z.max())
     >>> plt.show()
     """
     if NUMPY_AVAILABLE:
-        return _revolve_curve_numpy(x, z, angle_count, revolve_angle)
+        return revolve_curve_numpy(x, z, angle_count, revolve_angle)
     else:
-        return _revolve_curve_standard(x, z, angle_count, revolve_angle)
+        return revolve_curve_standard(x, z, angle_count, revolve_angle)
 
 
-def _revolve_curve_numpy(x, z, angle_count, revolve_angle):
+def revolve_curve_numpy(x, z, angle_count, revolve_angle):
     """revolve_curve using NumPy."""
     x1, z1, x2, z2 = x[:-1], z[:-1], x[1:], z[1:]
     xz_matrix = np.array([
@@ -79,10 +82,10 @@ def _revolve_curve_numpy(x, z, angle_count, revolve_angle):
         [x1, x1, z1],
         [x2, x2, z2],
         [x2, x2, z2],
-    ])
+        ])
 
     angle_step = revolve_angle / angle_count
-    angles = np.linspace(0, revolve_angle - angle_step, angle_count)
+    angles = np.arange(0, revolve_angle, angle_step)
     cos1, sin1 = np.cos(angles), np.sin(angles)
     cos2, sin2 = np.cos(angles + angle_step), np.sin(angles + angle_step)
     ones = np.ones_like(angles)
@@ -97,7 +100,7 @@ def _revolve_curve_numpy(x, z, angle_count, revolve_angle):
     return np.einsum("van, vag -> gnva", xz_matrix, angle_matrix).reshape(-1, 4, 3)
 
 
-def _revolve_curve_standard(x, z, angle_count, revolve_angle):
+def revolve_curve_standard(x, z, angle_count, revolve_angle):
     """revolve_curve using standard Python math."""
     angle_step = revolve_angle / angle_count
     faces = []

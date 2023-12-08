@@ -76,6 +76,24 @@
         "documentation": {}
     },
     {
+        "label": "revolve_curve_numpy",
+        "kind": 2,
+        "importPath": "curve2mesh.curve2mesh",
+        "description": "curve2mesh.curve2mesh",
+        "peekOfCode": "def revolve_curve_numpy(x, z, angle_count, revolve_angle):\n    \"\"\"revolve_curve using NumPy.\"\"\"\n    x1, z1, x2, z2 = x[:-1], z[:-1], x[1:], z[1:]\n    xz_matrix = np.array([\n        [x1, x1, z1],\n        [x1, x1, z1],\n        [x2, x2, z2],\n        [x2, x2, z2],\n        ])\n    angle_step = revolve_angle / angle_count",
+        "detail": "curve2mesh.curve2mesh",
+        "documentation": {}
+    },
+    {
+        "label": "revolve_curve_standard",
+        "kind": 2,
+        "importPath": "curve2mesh.curve2mesh",
+        "description": "curve2mesh.curve2mesh",
+        "peekOfCode": "def revolve_curve_standard(x, z, angle_count, revolve_angle):\n    \"\"\"revolve_curve using standard Python math.\"\"\"\n    angle_step = revolve_angle / angle_count\n    faces = []\n    for angle_idx in range(angle_count):\n        angle = angle_step * angle_idx\n        cos1, sin1 = math.cos(angle), math.sin(angle)\n        cos2, sin2 = math.cos(angle + angle_step), math.sin(angle + angle_step)\n        for idx in range(len(x) - 1):\n            x1, z1, x2, z2 = x[idx], z[idx], x[idx + 1], z[idx + 1]",
+        "detail": "curve2mesh.curve2mesh",
+        "documentation": {}
+    },
+    {
         "label": "approx_equal_3d_array",
         "kind": 2,
         "importPath": "pytest.test_common",
