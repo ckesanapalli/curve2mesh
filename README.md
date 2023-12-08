@@ -54,9 +54,9 @@ faces = revolve_curve(x, z, angle_count, revolve_angle=2*np.pi)
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.add_collection3d(Poly3DCollection(faces, facecolors='g', linewidths=1, alpha=0.5))
-ax.set_xlim(-1, 1)
-ax.set_ylim(-1, 1)
-ax.set_zlim(-1, 1)
+ax.set_xlim(-x.max(), x.max())
+ax.set_ylim(-x.max(), x.max())
+ax.set_zlim(z.min(), z.max())
 plt.show()
 ```
 
