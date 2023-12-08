@@ -59,7 +59,7 @@ plt.show()
 
 ## Contributing
 
-Contributions to `curve2mesh` are welcome! 
+Contributions to `curve2mesh` are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) for details on how to submit pull requests, bug reports, and feature requests.
 
 ## License
 
