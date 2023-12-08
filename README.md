@@ -42,6 +42,7 @@ ax.set_ylim(-1, 1)
 ax.set_zlim(-1, 1)
 plt.show()
 ```
+[](assets/images/mesh3d.png)
 
 ## Requirements
 - Python 3.6+
