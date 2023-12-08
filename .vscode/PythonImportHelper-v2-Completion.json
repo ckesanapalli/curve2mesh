@@ -116,16 +116,34 @@
         "kind": 2,
         "importPath": "pytest.test_common",
         "description": "pytest.test_common",
-        "peekOfCode": "def test_revolve_curve_length(sample_curve, angle_count):\n    \"\"\"Test if revolve_curve returns the correct number of faces.\"\"\"\n    x, z = sample_curve\n    faces = revolve_curve(x, z, angle_count)\n    expected_faces_count = (len(x) - 1) * angle_count\n    assert len(faces) == expected_faces_count, \"Incorrect number of faces in the generated mesh.\"\n@pytest.mark.parametrize(\"invalid_input\", [\n    ([], Z_SAMPLE, ANGLE_COUNT_SAMPLE),\n    (X_SAMPLE, [], ANGLE_COUNT_SAMPLE),\n    (X_SAMPLE, Z_SAMPLE, -1)",
+        "peekOfCode": "def test_revolve_curve_length(sample_curve, angle_count):\n    \"\"\"Test if revolve_curve returns the correct number of faces.\"\"\"\n    x, z = sample_curve\n    faces = revolve_curve(x, z, angle_count)\n    expected_faces_count = (len(x) - 1) * angle_count\n    assert len(faces) == expected_faces_count, \"Incorrect number of faces in the generated mesh.\"\ndef test_revolve_curve_small():\n    x = [1, 2]\n    z = [3, 4]\n    angle_count = 4",
         "detail": "pytest.test_common",
         "documentation": {}
     },
     {
-        "label": "test_revolve_curve_invalid_input",
+        "label": "test_revolve_curve_small",
         "kind": 2,
         "importPath": "pytest.test_common",
         "description": "pytest.test_common",
-        "peekOfCode": "def test_revolve_curve_invalid_input(invalid_input):\n    \"\"\"Test if revolve_curve handles invalid inputs correctly.\"\"\"\n    x, z, angle_count = invalid_input\n    with pytest.raises(ValueError):\n        revolve_curve(x, z, angle_count)",
+        "peekOfCode": "def test_revolve_curve_small():\n    x = [1, 2]\n    z = [3, 4]\n    angle_count = 4\n    result = revolve_curve(x, z, angle_count)\n    assert len(result) == angle_count * (len(x) - 1), \"Incorrect number of faces generated\"\ndef test_revolve_curve_with_numpy():\n    x = [0.5, 1.0, 1.5]\n    z = [1, 4, 9]\n    angle_count = 8",
+        "detail": "pytest.test_common",
+        "documentation": {}
+    },
+    {
+        "label": "test_revolve_curve_with_numpy",
+        "kind": 2,
+        "importPath": "pytest.test_common",
+        "description": "pytest.test_common",
+        "peekOfCode": "def test_revolve_curve_with_numpy():\n    x = [0.5, 1.0, 1.5]\n    z = [1, 4, 9]\n    angle_count = 8\n    result = revolve_curve(x, z, angle_count)\n    assert len(result) == angle_count * (len(x) - 1), \"Incorrect number of faces generated with NumPy\"\ndef test_revolve_curve_without_numpy(monkeypatch):\n    monkeypatch.setattr(\"curve2mesh.NUMPY_AVAILABLE\", False)  # Replace 'curve2mesh' with the actual name of your module\n    x = [0.5, 1.0, 1.5]\n    z = [1, 4, 9]",
+        "detail": "pytest.test_common",
+        "documentation": {}
+    },
+    {
+        "label": "test_revolve_curve_without_numpy",
+        "kind": 2,
+        "importPath": "pytest.test_common",
+        "description": "pytest.test_common",
+        "peekOfCode": "def test_revolve_curve_without_numpy(monkeypatch):\n    monkeypatch.setattr(\"curve2mesh.NUMPY_AVAILABLE\", False)  # Replace 'curve2mesh' with the actual name of your module\n    x = [0.5, 1.0, 1.5]\n    z = [1, 4, 9]\n    angle_count = 8\n    result = revolve_curve(x, z, angle_count)\n    assert len(result) == angle_count * (len(x) - 1), \"Incorrect number of faces generated without NumPy\"",
         "detail": "pytest.test_common",
         "documentation": {}
     },

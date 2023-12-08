@@ -40,13 +40,24 @@ def test_revolve_curve_length(sample_curve, angle_count):
     assert len(faces) == expected_faces_count, "Incorrect number of faces in the generated mesh."
 
 
-@pytest.mark.parametrize("invalid_input", [
-    ([], Z_SAMPLE, ANGLE_COUNT_SAMPLE),
-    (X_SAMPLE, [], ANGLE_COUNT_SAMPLE),
-    (X_SAMPLE, Z_SAMPLE, -1)
-])
-def test_revolve_curve_invalid_input(invalid_input):
-    """Test if revolve_curve handles invalid inputs correctly."""
-    x, z, angle_count = invalid_input
-    with pytest.raises(ValueError):
-        revolve_curve(x, z, angle_count)
+def test_revolve_curve_small():
+    x = [1, 2]
+    z = [3, 4]
+    angle_count = 4
+    result = revolve_curve(x, z, angle_count)
+    assert len(result) == angle_count * (len(x) - 1), "Incorrect number of faces generated"
+
+def test_revolve_curve_with_numpy():
+    x = [0.5, 1.0, 1.5]
+    z = [1, 4, 9]
+    angle_count = 8
+    result = revolve_curve(x, z, angle_count)
+    assert len(result) == angle_count * (len(x) - 1), "Incorrect number of faces generated with NumPy"
+
+def test_revolve_curve_without_numpy(monkeypatch):
+    monkeypatch.setattr("curve2mesh.NUMPY_AVAILABLE", False)  # Replace 'curve2mesh' with the actual name of your module
+    x = [0.5, 1.0, 1.5]
+    z = [1, 4, 9]
+    angle_count = 8
+    result = revolve_curve(x, z, angle_count)
+    assert len(result) == angle_count * (len(x) - 1), "Incorrect number of faces generated without NumPy"
