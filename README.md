@@ -21,6 +21,12 @@
 To install `curve2mesh`, simply run the following command:
 
 ```bash
+pip install curve2mesh
+```
+
+Or Install directly from Github using
+
+```bash
 pip install git+https://github.com/ckesanapalli/curve2mesh
 ```
 
