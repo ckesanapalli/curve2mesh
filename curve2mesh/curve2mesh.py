@@ -8,7 +8,6 @@ back to standard Python math operations otherwise.
 Author: Chaitanya Kesanapalli
 License: MIT License
 """
-
 from typing import Sequence
 import math
 
@@ -20,23 +19,27 @@ except ImportError:
     NUMPY_AVAILABLE = False
 
 
-def revolve_curve(x: Sequence[float], z: Sequence[float], angle_count: int) -> Sequence:
+def revolve_curve(
+        x_coords: Sequence[float],
+        z_coords: Sequence[float],
+        angle_count: int
+        ) -> List[Tuple[float, float, float]]:
     """
-    Revolves a 2D curve around the Y-axis to create a 3D mesh.
+    Revolve a 2D curve around the Y-axis to create a 3D mesh.
 
     Parameters
     ----------
-    x : Sequence[float]
-        The x-coordinates of the 2D curve.
-    z : Sequence[float]
-        The z-coordinates of the 2D curve.
+    x_coords : Sequence[float]
+        X-coordinates of the 2D curve.
+    z_coords : Sequence[float]
+        Z-coordinates of the 2D curve.
     angle_count : int
-        The number of angles to use in the revolution.
+        Number of angles for the revolution.
 
     Returns
     -------
-    Sequence
-        A list of faces representing the 3D mesh.
+    List[Tuple[float, float, float]]
+        A list of tuples representing the faces of the 3D mesh.
 
     Example
     -------
@@ -58,7 +61,6 @@ def revolve_curve(x: Sequence[float], z: Sequence[float], angle_count: int) -> S
     >>> ax.set_zlim(-1, 1)
     >>> plt.show()
     """
-
     if NUMPY_AVAILABLE:
         return _revolve_curve_numpy(x, z, angle_count)
     else:
@@ -66,7 +68,7 @@ def revolve_curve(x: Sequence[float], z: Sequence[float], angle_count: int) -> S
 
 
 def _revolve_curve_numpy(x, z, angle_count):
-    """Implementation of revolve_curve using NumPy."""
+    """revolve_curve using NumPy."""
     angle_step = 2 * np.pi / angle_count
     angles = np.linspace(0, 2 * np.pi - angle_step, angle_count)
     cos1, sin1 = np.cos(angles), np.sin(angles)
@@ -84,7 +86,7 @@ def _revolve_curve_numpy(x, z, angle_count):
 
 
 def _revolve_curve_standard(x, z, angle_count):
-    """Implementation of revolve_curve using standard Python math."""
+    """revolve_curve using standard Python math."""
     angle_step = 2 * math.pi / angle_count
     faces = []
 
