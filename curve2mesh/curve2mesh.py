@@ -45,11 +45,10 @@ def revolve_curve(
     -------
     >>> import matplotlib.pyplot as plt
     >>> from mpl_toolkits.mplot3d.art3d import Poly3DCollection
-
+    >>> from curve2mesh import revolve_curve
     >>> # Example 2D curve
     >>> x = np.linspace(0, 1, 100) if NUMPY_AVAILABLE else [i/100 for i in range(100)]
     >>> z = x
-
     >>> angle_count = 50
     >>> faces = revolve_curve(x, z, angle_count)
 
