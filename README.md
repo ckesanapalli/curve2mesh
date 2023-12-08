@@ -1,3 +1,6 @@
+[![Upload Python Package](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-publish.yml/badge.svg)](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-publish.yml)
+
+
 # curve2mesh
 
 ## Overview
