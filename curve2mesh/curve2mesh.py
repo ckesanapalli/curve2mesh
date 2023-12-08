@@ -20,25 +20,25 @@ except ImportError:
 
 
 def revolve_curve(
-        x_coords: Sequence[float],
-        z_coords: Sequence[float],
+        x: Sequence[float],
+        z: Sequence[float],
         angle_count: int
-        ) -> List[Tuple[float, float, float]]:
+        ) -> list[tuple[float, float, float]]:
     """
     Revolve a 2D curve around the Y-axis to create a 3D mesh.
 
     Parameters
     ----------
-    x_coords : Sequence[float]
+    x : Sequence[float]
         X-coordinates of the 2D curve.
-    z_coords : Sequence[float]
+    z : Sequence[float]
         Z-coordinates of the 2D curve.
     angle_count : int
         Number of angles for the revolution.
 
     Returns
     -------
-    List[Tuple[float, float, float]]
+    list[tuple[float, float, float]]
         A list of tuples representing the faces of the 3D mesh.
 
     Example
