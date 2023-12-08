@@ -54,7 +54,7 @@ plt.show()
 
 ## Requirements
 
-- Python 3.9+
+- Python 3.7+
 - NumPy (optional but recommended)
 
 ## Contributing
