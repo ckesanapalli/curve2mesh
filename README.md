@@ -48,7 +48,7 @@ plt.show()
 - NumPy (optional but recommended)
 
 ## Contributing
-Contributions to `curve2mesh` are welcome! Please read our Contributing Guidelines for details on how to submit pull requests, bug reports, and feature requests.
+Contributions to `curve2mesh` are welcome! 
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
