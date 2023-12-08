@@ -57,10 +57,6 @@ plt.show()
 - Python 3.7+
 - NumPy (optional but recommended)
 
-## Contributing
-
-Contributions to `curve2mesh` are welcome! 
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
