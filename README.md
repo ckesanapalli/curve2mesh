@@ -1,6 +1,6 @@
 [![Python application](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-app.yml/badge.svg)](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-app.yml)
 [![Upload Python Package](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-publish.yml/badge.svg)](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-publish.yml)
-[![Python Package using Conda](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-package-conda.yml/badge.svg)](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-package-conda.yml)
+[![Python package](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-package.yml/badge.svg)](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-package.yml)
 
 # curve2mesh
 
