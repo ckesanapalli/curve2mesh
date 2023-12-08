@@ -55,7 +55,7 @@ def revolve_curve(
 
     >>> # Sample 2D curve coordinates
     >>> x = np.linspace(np.pi/2, np.pi, 2)
-    >>> z = np.sin(x)  # Example curve (parabola)
+    >>> z = x**2  # Example curve (parabola)
     >>> # Revolve the curve
     >>> angle_count = 4
     >>> faces = revolve_curve(x, z, angle_count, revolve_angle=2*np.pi)
