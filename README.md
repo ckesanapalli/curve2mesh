@@ -12,7 +12,7 @@
 To install `curve2mesh`, simply run the following command:
 
 ```bash
-pip install curve2mesh
+pip install git+https://github.com/ckesanapalli/curve2mesh
 ```
 **Note**: NumPy is an optional dependency but is recommended for performance enhancement.
 
