@@ -1,0 +1,133 @@
+[
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "revolve_curve",
+        "importPath": "curve2mesh",
+        "description": "curve2mesh",
+        "isExtraImport": true,
+        "detail": "curve2mesh",
+        "documentation": {}
+    },
+    {
+        "label": "revolve_curve",
+        "kind": 2,
+        "importPath": "curve2mesh.curve2mesh",
+        "description": "curve2mesh.curve2mesh",
+        "peekOfCode": "def revolve_curve(\n        x: Sequence[float],\n        z: Sequence[float],\n        angle_count: int\n        ) -> List[Tuple[float, float, float]]:\n    \"\"\"\n    Revolve a 2D curve around the Y-axis to create a 3D mesh.\n    Parameters\n    ----------\n    x : Sequence[float]",
+        "detail": "curve2mesh.curve2mesh",
+        "documentation": {}
+    },
+    {
+        "label": "approx_equal_3d_array",
+        "kind": 2,
+        "importPath": "pytest.test_common",
+        "description": "pytest.test_common",
+        "peekOfCode": "def approx_equal_3d_array(array1, array2, tol=1e-5):\n    \"\"\"Helper function to check approximate equality of 3D arrays.\"\"\"\n    return all(math.isclose(a, b, rel_tol=tol) for a, b in zip(array1.ravel(), array2.ravel()))\n@pytest.fixture\ndef sample_curve():\n    \"\"\"Fixture to provide sample curve data.\"\"\"\n    x = np.linspace(0, 1, 10) if np else [i/10 for i in range(10)]\n    z = np.power(x, 2) if np else [i**2/100 for i in range(10)]\n    return x, z\n@pytest.mark.parametrize(\"angle_count\", [10, 50, 100])",
+        "detail": "pytest.test_common",
+        "documentation": {}
+    },
+    {
+        "label": "sample_curve",
+        "kind": 2,
+        "importPath": "pytest.test_common",
+        "description": "pytest.test_common",
+        "peekOfCode": "def sample_curve():\n    \"\"\"Fixture to provide sample curve data.\"\"\"\n    x = np.linspace(0, 1, 10) if np else [i/10 for i in range(10)]\n    z = np.power(x, 2) if np else [i**2/100 for i in range(10)]\n    return x, z\n@pytest.mark.parametrize(\"angle_count\", [10, 50, 100])\ndef test_revolve_curve_length(sample_curve, angle_count):\n    \"\"\"Test if revolve_curve returns the correct number of faces.\"\"\"\n    x, z = sample_curve\n    faces = revolve_curve(x, z, angle_count)",
+        "detail": "pytest.test_common",
+        "documentation": {}
+    },
+    {
+        "label": "test_revolve_curve_length",
+        "kind": 2,
+        "importPath": "pytest.test_common",
+        "description": "pytest.test_common",
+        "peekOfCode": "def test_revolve_curve_length(sample_curve, angle_count):\n    \"\"\"Test if revolve_curve returns the correct number of faces.\"\"\"\n    x, z = sample_curve\n    faces = revolve_curve(x, z, angle_count)\n    expected_faces_count = (len(x) - 1) * angle_count\n    assert len(faces) == expected_faces_count, \"Incorrect number of faces in the generated mesh.\"\n@pytest.mark.parametrize(\"invalid_input\", [\n    ([], Z_SAMPLE, ANGLE_COUNT_SAMPLE),\n    (X_SAMPLE, [], ANGLE_COUNT_SAMPLE),\n    (X_SAMPLE, Z_SAMPLE, -1)",
+        "detail": "pytest.test_common",
+        "documentation": {}
+    },
+    {
+        "label": "test_revolve_curve_invalid_input",
+        "kind": 2,
+        "importPath": "pytest.test_common",
+        "description": "pytest.test_common",
+        "peekOfCode": "def test_revolve_curve_invalid_input(invalid_input):\n    \"\"\"Test if revolve_curve handles invalid inputs correctly.\"\"\"\n    x, z, angle_count = invalid_input\n    with pytest.raises(ValueError):\n        revolve_curve(x, z, angle_count)",
+        "detail": "pytest.test_common",
+        "documentation": {}
+    },
+    {
+        "label": "X_SAMPLE",
+        "kind": 5,
+        "importPath": "pytest.test_common",
+        "description": "pytest.test_common",
+        "peekOfCode": "X_SAMPLE = [0, 1, 2]\nZ_SAMPLE = [2, 1, 0]\nANGLE_COUNT_SAMPLE = 10\ndef approx_equal_3d_array(array1, array2, tol=1e-5):\n    \"\"\"Helper function to check approximate equality of 3D arrays.\"\"\"\n    return all(math.isclose(a, b, rel_tol=tol) for a, b in zip(array1.ravel(), array2.ravel()))\n@pytest.fixture\ndef sample_curve():\n    \"\"\"Fixture to provide sample curve data.\"\"\"\n    x = np.linspace(0, 1, 10) if np else [i/10 for i in range(10)]",
+        "detail": "pytest.test_common",
+        "documentation": {}
+    },
+    {
+        "label": "Z_SAMPLE",
+        "kind": 5,
+        "importPath": "pytest.test_common",
+        "description": "pytest.test_common",
+        "peekOfCode": "Z_SAMPLE = [2, 1, 0]\nANGLE_COUNT_SAMPLE = 10\ndef approx_equal_3d_array(array1, array2, tol=1e-5):\n    \"\"\"Helper function to check approximate equality of 3D arrays.\"\"\"\n    return all(math.isclose(a, b, rel_tol=tol) for a, b in zip(array1.ravel(), array2.ravel()))\n@pytest.fixture\ndef sample_curve():\n    \"\"\"Fixture to provide sample curve data.\"\"\"\n    x = np.linspace(0, 1, 10) if np else [i/10 for i in range(10)]\n    z = np.power(x, 2) if np else [i**2/100 for i in range(10)]",
+        "detail": "pytest.test_common",
+        "documentation": {}
+    },
+    {
+        "label": "ANGLE_COUNT_SAMPLE",
+        "kind": 5,
+        "importPath": "pytest.test_common",
+        "description": "pytest.test_common",
+        "peekOfCode": "ANGLE_COUNT_SAMPLE = 10\ndef approx_equal_3d_array(array1, array2, tol=1e-5):\n    \"\"\"Helper function to check approximate equality of 3D arrays.\"\"\"\n    return all(math.isclose(a, b, rel_tol=tol) for a, b in zip(array1.ravel(), array2.ravel()))\n@pytest.fixture\ndef sample_curve():\n    \"\"\"Fixture to provide sample curve data.\"\"\"\n    x = np.linspace(0, 1, 10) if np else [i/10 for i in range(10)]\n    z = np.power(x, 2) if np else [i**2/100 for i in range(10)]\n    return x, z",
+        "detail": "pytest.test_common",
+        "documentation": {}
+    }
+]

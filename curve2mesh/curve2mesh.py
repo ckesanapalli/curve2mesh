@@ -8,7 +8,7 @@ back to standard Python math operations otherwise.
 Author: Chaitanya Kesanapalli
 License: MIT License
 """
-from typing import Sequence
+from typing import Sequence, List, Tuple
 import math
 
 # Try to import NumPy. If not available, use standard Python math operations.
@@ -23,7 +23,7 @@ def revolve_curve(
         x: Sequence[float],
         z: Sequence[float],
         angle_count: int
-        ) -> list[tuple[float, float, float]]:
+        ) -> List[Tuple[float, float, float]]:
     """
     Revolve a 2D curve around the Y-axis to create a 3D mesh.
 
@@ -38,7 +38,7 @@ def revolve_curve(
 
     Returns
     -------
-    list[tuple[float, float, float]]
+    List[Tuple[float, float, float]]
         A list of tuples representing the faces of the 3D mesh.
 
     Example
@@ -68,20 +68,28 @@ def revolve_curve(
 
 def _revolve_curve_numpy(x, z, angle_count):
     """revolve_curve using NumPy."""
+    x1, z1, x2, z2 = x[:-1], z[:-1], x[1:], z[1:]
+    xz_matrix = np.array([
+        [x1, x1, z1],
+        [x1, x1, z1],
+        [x2, x2, z2],
+        [x2, x2, z2],
+    ])
+
     angle_step = 2 * np.pi / angle_count
     angles = np.linspace(0, 2 * np.pi - angle_step, angle_count)
     cos1, sin1 = np.cos(angles), np.sin(angles)
     cos2, sin2 = np.cos(angles + angle_step), np.sin(angles + angle_step)
     ones = np.ones_like(angles)
 
-    x1, z1, x2, z2 = x[:-1], z[:-1], x[1:], z[1:]
-    mul = np.multiply.outer
-    return np.array([
-        [mul(x1, cos1), mul(x1, sin1), mul(z1, ones)],
-        [mul(x1, cos2), mul(x1, sin2), mul(z1, ones)],
-        [mul(x2, cos2), mul(x2, sin2), mul(z2, ones)],
-        [mul(x2, cos1), mul(x2, sin1), mul(z2, ones)],
-    ]).reshape(4, 3, -1).transpose(2, 0, 1)
+    angle_matrix = np.array([
+        [cos1, sin1, ones],
+        [cos2, sin2, ones],
+        [cos2, sin2, ones],
+        [cos1, sin1, ones],
+        ])
+
+    return np.einsum("van, vag -> gnva", xz_matrix, angle_matrix).reshape(-1, 4, 3)
 
 
 def _revolve_curve_standard(x, z, angle_count):
