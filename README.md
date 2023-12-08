@@ -1,22 +1,29 @@
 # curve2mesh
+
 ## Overview
+
 `curve2mesh` is a Python module designed for generating 3D meshes from 2D curves. This module simplifies the process of revolving a 2D curve around the Y-axis to create a 3D mesh. It is optimized for performance with NumPy, but also works with standard Python math operations when NumPy is not available.
 
 ## Features
+
 - **Ease of Use**: Simple interface for revolving 2D curves.
+
 - **Performance**: Optimized with NumPy for efficient computation.
 - **Fallback Compatibility**: Works with standard Python math operations in the absence of NumPy.
 - **Flexible**: Suitable for a wide range of applications in graphics, modeling, and educational purposes.
 
 ## Installation
+
 To install `curve2mesh`, simply run the following command:
 
 ```bash
 pip install git+https://github.com/ckesanapalli/curve2mesh
 ```
+
 **Note**: NumPy is an optional dependency but is recommended for performance enhancement.
 
 ## Usage
+
 Here's a basic example of how to use curve2mesh:
 
 ```python
@@ -42,17 +49,22 @@ ax.set_ylim(-1, 1)
 ax.set_zlim(-1, 1)
 plt.show()
 ```
+
 ![asdas](assets/images/mesh3d.png)
 
 ## Requirements
+
 - Python 3.9+
 - NumPy (optional but recommended)
 
 ## Contributing
+
 Contributions to `curve2mesh` are welcome! 
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Authors
+
 Chaitanya Kesanapalli
