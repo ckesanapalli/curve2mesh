@@ -42,7 +42,7 @@ z = x ** 2  # Example curve (parabola)
 
 # Revolve the curve
 angle_count = 50
-faces = revolve_curve(x, z, angle_count)
+faces = revolve_curve(x, z, angle_count, revolve_angle=2*np.pi)
 
 # Plotting
 fig = plt.figure()

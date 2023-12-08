@@ -9,20 +9,25 @@ Author: Chaitanya Kesanapalli
 License: MIT License
 """
 from typing import Sequence, List, Tuple
+from warnings import warn
 import math
 
 # Try to import NumPy. If not available, use standard Python math operations.
 try:
     import numpy as np
     NUMPY_AVAILABLE = True
-except ImportError:
+    TWO_PI = 2 * np.pi
+except ModuleNotFoundError as err:
+    warn("NumPy not found. Falling back to standard Python math operations.")
     NUMPY_AVAILABLE = False
+    TWO_PI = 2 * math.pi
 
 
 def revolve_curve(
         x: Sequence[float],
         z: Sequence[float],
-        angle_count: int
+        angle_count: int,
+        revolve_angle: float = TWO_PI,
         ) -> List[Tuple[float, float, float]]:
     """
     Revolve a 2D curve around the Y-axis to create a 3D mesh.
@@ -61,12 +66,12 @@ def revolve_curve(
     >>> plt.show()
     """
     if NUMPY_AVAILABLE:
-        return _revolve_curve_numpy(x, z, angle_count)
+        return _revolve_curve_numpy(x, z, angle_count, revolve_angle)
     else:
-        return _revolve_curve_standard(x, z, angle_count)
+        return _revolve_curve_standard(x, z, angle_count, revolve_angle)
 
 
-def _revolve_curve_numpy(x, z, angle_count):
+def _revolve_curve_numpy(x, z, angle_count, revolve_angle):
     """revolve_curve using NumPy."""
     x1, z1, x2, z2 = x[:-1], z[:-1], x[1:], z[1:]
     xz_matrix = np.array([
@@ -76,8 +81,8 @@ def _revolve_curve_numpy(x, z, angle_count):
         [x2, x2, z2],
     ])
 
-    angle_step = 2 * np.pi / angle_count
-    angles = np.linspace(0, 2 * np.pi - angle_step, angle_count)
+    angle_step = revolve_angle / angle_count
+    angles = np.linspace(0, revolve_angle - angle_step, angle_count)
     cos1, sin1 = np.cos(angles), np.sin(angles)
     cos2, sin2 = np.cos(angles + angle_step), np.sin(angles + angle_step)
     ones = np.ones_like(angles)
@@ -92,9 +97,9 @@ def _revolve_curve_numpy(x, z, angle_count):
     return np.einsum("van, vag -> gnva", xz_matrix, angle_matrix).reshape(-1, 4, 3)
 
 
-def _revolve_curve_standard(x, z, angle_count):
+def _revolve_curve_standard(x, z, angle_count, revolve_angle):
     """revolve_curve using standard Python math."""
-    angle_step = 2 * math.pi / angle_count
+    angle_step = revolve_angle / angle_count
     faces = []
 
     for angle_idx in range(angle_count):

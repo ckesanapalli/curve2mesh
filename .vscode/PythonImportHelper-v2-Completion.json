@@ -24,6 +24,14 @@
         "documentation": {}
     },
     {
+        "label": "warn",
+        "importPath": "warnings",
+        "description": "warnings",
+        "isExtraImport": true,
+        "detail": "warnings",
+        "documentation": {}
+    },
+    {
         "label": "math",
         "kind": 6,
         "isExtraImport": true,
@@ -63,7 +71,7 @@
         "kind": 2,
         "importPath": "curve2mesh.curve2mesh",
         "description": "curve2mesh.curve2mesh",
-        "peekOfCode": "def revolve_curve(\n        x: Sequence[float],\n        z: Sequence[float],\n        angle_count: int\n        ) -> List[Tuple[float, float, float]]:\n    \"\"\"\n    Revolve a 2D curve around the Y-axis to create a 3D mesh.\n    Parameters\n    ----------\n    x : Sequence[float]",
+        "peekOfCode": "def revolve_curve(\n        x: Sequence[float],\n        z: Sequence[float],\n        angle_count: int,\n        revolve_angle: float = TWO_PI,\n        ) -> List[Tuple[float, float, float]]:\n    \"\"\"\n    Revolve a 2D curve around the Y-axis to create a 3D mesh.\n    Parameters\n    ----------",
         "detail": "curve2mesh.curve2mesh",
         "documentation": {}
     },
