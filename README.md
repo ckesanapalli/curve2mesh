@@ -2,7 +2,7 @@
 
 ## Overview
 
-`curve2mesh` is a Python module designed for generating 3D meshes from 2D curves. This module simplifies the process of revolving a 2D curve around the Y-axis to create a 3D mesh. It is optimized for performance with NumPy, but also works with standard Python math operations when NumPy is not available.
+`curve2mesh` is a Python module designed for generating 3D meshes from 2D curves. This module simplifies the process of revolving a 2D curve around the Z-axis to create a 3D mesh. It is optimized for performance with NumPy, but also works with standard Python math operations when NumPy is not available.
 
 ## Features
 
