@@ -86,8 +86,9 @@ def revolve_curve_numpy(x, z, angle_count, revolve_angle):
 
     angle_step = revolve_angle / angle_count
     angles = np.arange(0, revolve_angle, angle_step)
+    stepped_angles = angles + angle_step
     cos1, sin1 = np.cos(angles), np.sin(angles)
-    cos2, sin2 = np.cos(angles + angle_step), np.sin(angles + angle_step)
+    cos2, sin2 = np.cos(stepped_angles), np.sin(stepped_angles)
     ones = np.ones_like(angles)
 
     angle_matrix = np.array([
