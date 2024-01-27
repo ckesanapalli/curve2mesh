@@ -27,7 +27,7 @@ def revolve_curve_along_path(curve: np.ndarray, revolve_path: np.ndarray) -> np.
     Returns
     -------
     np.ndarray
-        An (mn x 4 x 3) array representing the faces of the 3D surface mesh.
+        An ((m-1)(n-1) x 4 x 3) array representing the faces of the 3D surface mesh.
 
 
     Raises
