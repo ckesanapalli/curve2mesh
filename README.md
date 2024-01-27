@@ -34,6 +34,7 @@ pip install git+https://github.com/ckesanapalli/curve2mesh
 
 ## Usage
 
+### Circular Revolve
 Here's a basic example of how to use curve2mesh:
 
 ```python
@@ -62,6 +63,7 @@ plt.show()
 ![circular_revolve_path](assets/images/circular_revolve_path.png)
 
 
+### Revolve Along Path
 Here's an example using revolve path curve
 ```python
 from curve2mesh import revolve_curve_along_path
