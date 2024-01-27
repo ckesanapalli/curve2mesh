@@ -34,6 +34,7 @@ pip install git+https://github.com/ckesanapalli/curve2mesh
 
 ## Usage
 
+### Circular Revolve
 Here's a basic example of how to use curve2mesh:
 
 ```python
@@ -59,8 +60,37 @@ ax.set_ylim(-x.max(), x.max())
 ax.set_zlim(z.min(), z.max())
 plt.show()
 ```
+![circular_revolve_path](assets/images/circular_revolve_path.png)
 
-![asdas](assets/images/mesh3d.png)
+
+### Revolve Along Path
+Here's an example using revolve path curve
+```python
+from curve2mesh import revolve_curve_along_path
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+
+x = np.linspace(1, 10, 100)
+z = np.log(x)
+main_curve = np.array([x, z]).T
+
+angle_rad = np.linspace(0, 4*np.pi, 100)
+radius = angle_rad/10
+revolve_path = np.array([angle_rad, radius]).T
+
+revolved_mesh = revolve_curve_along_path(main_curve, revolve_path)
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.add_collection3d(Poly3DCollection(revolved_mesh, alpha=0.5))
+ax.set_xlim(-x.max(), x.max())
+ax.set_ylim(-x.max(), x.max())
+ax.set_zlim(z.min(), z.max())
+plt.show()
+
+```
+![revolve_path_image](assets/images/revolve_path_image.jpg)
 
 ## Requirements
 
