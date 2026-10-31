@@ -2,7 +2,12 @@
 [![Upload Python Package](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-publish.yml/badge.svg)](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-publish.yml)
 [![Python package](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-package.yml/badge.svg)](https://github.com/ckesanapalli/curve2mesh/actions/workflows/python-package.yml)
 
-# curve2mesh
+# curve2mesh (Archived use [SurfMesh](https://pypi.org/project/surfmesh/) instead)
+
+## Notice:
+**This repository is archived and Please [SurfMesh](https://github.com/ckesanapalli/surfmesh) is instead.**
+
+
 
 ## Overview
 
